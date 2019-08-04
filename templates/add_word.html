@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="content-section col-md-12">
+        <form method="post" action="" id="add-word">
+            {{ form.hidden_tag() }}
+
+            {{ form.word.label() }}
+            {{ form.word() }}
+
+            {{ form.category.label() }}
+            {{ form.category() }}
+
+            {{ form.submit() }}
+        </form>
+    </div>
+{% endblock %}
