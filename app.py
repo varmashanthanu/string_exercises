@@ -10,6 +10,10 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+HOST = os.environ['HOST']
+PORT = os.environ['PORT']
+DEBUG = os.environ['DEBUG']
+
 db = Sql(app)
 
 # from models import Word, Puzzle
