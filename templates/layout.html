@@ -77,7 +77,9 @@
         crossorigin="anonymous"></script>
 {% block scripts %}{% endblock %}
 <script>
-    $('.alert').fadeOut(4000);
+    setTimeout(function(){
+       $('.alert').fadeOut();
+    }, 2000);
     function update_progress(status_url, nanobar, status_div) {
         // send GET request to status URL
         $.getJSON(status_url, function (data) {

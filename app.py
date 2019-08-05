@@ -17,6 +17,7 @@ DEBUG = os.environ['DEBUG']
 db = Sql(app)
 
 # from models import Word, Puzzle
+from dictionary_builder import add_single_word
 
 db.create_all()
 
@@ -31,7 +32,10 @@ def add_word():
     print(request.method, file=sys.stderr)
     if request.method == 'POST' and request.form:
         print(request.form, file=sys.stderr)
-        flash('"'+request.form.get('word')+'" Added')
+        word = request.form.get('word')
+        category = request.form.get('category')
+        message = add_single_word(word, category)
+        flash(message)
         form = WordForm()
         return render_template('add_word.html', title='Add Word', form=form)
     else:
@@ -47,7 +51,7 @@ def build_puzzle(puzzle_id=None):
         return render_template('build_puzzle.html', title='Build Puzzle')
     elif puzzle_id:
         flash('fetching puzzle')
-        render_template('build_puzzle.html', title='Puzzle Screen')
+        return render_template('build_puzzle.html', title='Puzzle Screen')
     else:
         form = PuzzleForm()
     return render_template('build_puzzle.html', title='Build Puzzle', form=form)
