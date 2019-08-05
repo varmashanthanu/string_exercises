@@ -1,11 +1,15 @@
-from flask import Flask, render_template, url_for, request, flash
+from flask import Flask, render_template, url_for, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy as Sql
 from sqlalchemy import create_engine
+from werkzeug import secure_filename
 from forms import WordForm, PuzzleForm
 import sys
 import os
 
 app = Flask(__name__)
+UPLOAD_DIR = 'static/uploads'
+if not os.path.exists(UPLOAD_DIR):
+    os.makedirs(UPLOAD_DIR)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
@@ -17,7 +21,8 @@ DEBUG = os.environ['DEBUG']
 db = Sql(app)
 
 # from models import Word, Puzzle
-from dictionary_builder import add_single_word
+from dictionary_builder import add_single_word, add_from_file
+from puzzle_builder import build_puzzle, build_game
 
 db.create_all()
 
@@ -43,18 +48,46 @@ def add_word():
         return render_template('add_word.html', title='Add Word', form=form)
 
 
-@app.route('/build_puzzle/<puzzle_id>', methods=['get'])
-@app.route('/build_puzzle', methods=['get', 'post'])
-def build_puzzle(puzzle_id=None):
+@app.route('/uploader', methods=['post'])
+def upload_file():
+    if request.method == 'POST':
+        f = request.files['file']
+        if not f:
+            flash('Please attach a csv file with the words')
+            form = WordForm()
+            return render_template('add_word.html', form=form, title='Add Word')
+        category = request.form.get('category')
+        print(category, file=sys.stderr)
+        filename = '/'.join([UPLOAD_DIR, secure_filename(f.filename)])
+        f.save(filename)
+        message = add_from_file(filename, category)
+        flash(message)
+        return render_template('home.html')
+
+
+@app.route('/create_puzzle/<puzzle_id>', methods=['get'])
+@app.route('/create_puzzle', methods=['get', 'post'])
+def create_puzzle(puzzle_id=None):
     if request.method == 'POST' and request.form:
-        flash('Puzzle Created')
-        return render_template('build_puzzle.html', title='Build Puzzle')
-    elif puzzle_id:
-        flash('fetching puzzle')
-        return render_template('build_puzzle.html', title='Puzzle Screen')
+        question = request.form.get('question')
+        answer = request.form.get('answer')
+        difficulty = request.form.get('difficulty')
+        message, puzzle_id = build_puzzle(question, answer, difficulty)
+        flash(message)
+        return redirect(url_for('play_game', game_id=puzzle_id))
     else:
         form = PuzzleForm()
-    return render_template('build_puzzle.html', title='Build Puzzle', form=form)
+    return render_template('create_puzzle.html', title='Create Puzzle', form=form)
+
+
+@app.route('/play_game/<game_id>', methods=['get'])
+def play_game(game_id):
+    message, game = build_game(game_id)
+    if not message == 'success':
+        flash(message)
+        return render_template('home.html')
+    else:
+        return render_template('play_game.html', game=game, title='Play')
 
 
 if __name__ == '__main__':

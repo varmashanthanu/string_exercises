@@ -6,11 +6,21 @@
 
             {{ form.word.label() }}
             {{ form.word() }}
-
+            <br/>
             {{ form.category.label() }}
             {{ form.category() }}
-
+            <br/>
             {{ form.submit() }}
         </form>
     </div>
+    <h2>OR</h2>
+    <p>Upload From File</p>
+    <form action="http://localhost:5000/uploader" method="POST"
+          enctype="multipart/form-data">
+        Category: <input type="text" name="category"/>
+        <br/>
+        <input type="file" name="file"/>
+        <br/>
+        <input type="submit"/>
+    </form>
 {% endblock %}

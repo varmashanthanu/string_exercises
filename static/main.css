@@ -1,6 +1,6 @@
 body {
   background: #eae5fa;
-  color: #d6d7cc;
+  color: #030603;
   margin-top: 5rem;
 }
 
@@ -18,6 +18,49 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 900000;
     text-align: center;
 }
+
+.single-letter {
+    width: 300px;
+    text-transform: uppercase;
+}
+
+.final-answer {
+    width: 800px;
+    text-transform: uppercase;
+
+}
+
+.finall-answer-shown {
+    color: darkgreen;
+    font-size: 3em;
+}
+
+.scrambled-word {
+    padding: 10px;
+    height: 60px;
+}
+
+.check_button {
+    font-size: small;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 1px;
+    cursor: pointer;
+}
+
+.keys {
+    padding-left: 5px;
+    color: darkgreen;
+    width: 30px;
+}
+
+.single-letters-keys {
+    /*border: darkgreen solid 2px;*/
+    font-size: 1.5em;
+    width: 30px;
+}
+
+
 
 .bg-steel {
   background-color: #49008a;
