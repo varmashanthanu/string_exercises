@@ -20,3 +20,5 @@ class PuzzleForm(FlaskForm):
 class KeywordForm(FlaskForm):
     word = StringField('KeyWord', validators=[DataRequired()])
     keys = StringField('KeyLetters', validators=[DataRequired()])
+
+
