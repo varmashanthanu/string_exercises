@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, flash, redirect
+from flask import Flask, render_template, url_for, request, flash, redirect, abort
 from flask_sqlalchemy import SQLAlchemy as Sql
 from sqlalchemy import create_engine
 from werkzeug import secure_filename
@@ -85,9 +85,14 @@ def play_game(game_id):
     message, game = build_game(game_id)
     if not message == 'success':
         flash(message)
-        return render_template('home.html')
+        return render_template('404.html', title='404', missing_object='Puzzle'), 404
     else:
         return render_template('play_game.html', game=game, title='Play')
+
+
+@app.errorhandler(404)
+def page_not_found(missing_object):
+    return render_template('404.html', title='404', missing_object='Page'), 404
 
 
 if __name__ == '__main__':

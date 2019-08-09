@@ -8,6 +8,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #6800ec;
 }
 
+.page-not-found-image {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
 .alert-message {
     top: 0;
     left: 0;
