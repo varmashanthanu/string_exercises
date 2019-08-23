@@ -1,16 +1,27 @@
 body {
-  background: #eae5fa;
-  color: #030603;
-  margin-top: 5rem;
+    background: #eae5fa;
+    color: #030603;
+    margin-top: 5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #6800ec;
+    color: #6800ec;
 }
 
 .page-not-found-image {
     width: 100%;
     margin-bottom: 25px;
+}
+
+.jumbled_word_part {
+    width: 150px;
+    letter-spacing: 5px;
+    display: inline-block;
+    text-align: right;
+}
+
+.answer_field_part {
+
 }
 
 .alert-message {
@@ -30,12 +41,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .final-answer {
-    width: 800px;
+    display: block;
+    width: 400px;
     text-transform: uppercase;
 
 }
 
-.finall-answer-shown {
+.dancing-gif {
+    height: 600px;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -500px;
+    position: absolute;
+    top: 50%;
+    width: 1000px;
+}
+
+.final-answer-shown {
     color: darkgreen;
     font-size: 3em;
 }
@@ -66,76 +88,75 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-
 .bg-steel {
-  background-color: #49008a;
+    background-color: #49008a;
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+    color: #cbd5db;
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 .site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
+    font-weight: 500;
 }
 
 .content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
 }
 
 .article-title {
-  color: #444444;
+    color: #444444;
 }
 
 a.article-title:hover {
-  color: #428bca;
-  text-decoration: none;
+    color: #428bca;
+    text-decoration: none;
 }
 
 .article-content {
-  white-space: pre-line;
+    white-space: pre-line;
 }
 
 .article-img {
-  height: 65px;
-  width: 65px;
-  margin-right: 16px;
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
 }
 
 .article-metadata {
-  padding-bottom: 1px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
 }
 
 .article-metadata a:hover {
-  color: #333;
-  text-decoration: none;
+    color: #333;
+    text-decoration: none;
 }
 
 .article-svg {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
 }
 
 .account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
 }
 
 .account-heading {
-  font-size: 2.5rem;
+    font-size: 2.5rem;
 }
 
 /* Custom Formatting for certain sections */
@@ -144,6 +165,7 @@ a.article-title:hover {
     padding-right: 1rem;
     position: relative;
 }
+
 .field-value-small {
     border-radius: 5px;
     color: #495057;
@@ -153,11 +175,14 @@ a.article-title:hover {
     border: 1px solid #ced4da;
     padding-left: 5px;
 }
+
 .field-label {
     padding-right: 0.5rem;
 }
+
 .field-value-big {
 }
+
 .field-value-drop-area {
     border-radius: 5px;
     color: #495057;
@@ -178,6 +203,7 @@ a.article-title:hover {
 .invalid-input-fields {
     border-color: red;
 }
+
 .invalid-fields-feedback {
     position: absolute;
     font-size: 0.75rem;
@@ -189,36 +215,39 @@ a.article-title:hover {
 }
 
 .loadingspinner {
-   pointer-events: none;
+    pointer-events: none;
     position: fixed;
     /* visibility: hidden; */
     display: none;
     top: 50%;
     left: 50%;
-   width: 2.5em;
-   height: 2.5em;
-   border: 0.4em solid transparent;
-   border-color: #eee;
-   border-top-color: #3E67EC;
-   border-radius: 50%;
-   animation: loadingspin 1s linear infinite;
+    width: 2.5em;
+    height: 2.5em;
+    border: 0.4em solid transparent;
+    border-color: #eee;
+    border-top-color: #3E67EC;
+    border-radius: 50%;
+    animation: loadingspin 1s linear infinite;
 }
 
 @keyframes loadingspin {
-   100% {
-         transform: rotate(360deg)
-   }
+    100% {
+        transform: rotate(360deg)
+    }
 }
+
 .data-table {
     overflow: scroll;
     height: 400px;
     max-width: 100%;
 }
+
 table {
     border-radius: 3px;
     border: solid #dddddd 1px;
     background-color: white;
 }
+
 th, td {
     border: solid #dddddd 1px;
     padding-left: 0.5rem;

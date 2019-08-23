@@ -5,9 +5,9 @@
         {% for i, word in game['scrambled_words'] %}
 
             <span class="scrambled-word;{{ game['words'][i] }}" id="sw_{{ i }}">
-                {{ word }}
+                <span class="jumbled_word_part">{{ word }}</span>
 {#                {% for l in word %}#}
-                    <span><input class="single-letter" id="word_{{ i }}"/></span>
+                    <span class="answer_field_part"><input class="single-letter" id="word_{{ i }}"/></span>
 {#                {% endfor %}#}
             </span>
             <span class="check_button" id="cb_{{ i }}">CHECK</span>
@@ -36,9 +36,13 @@
         <span><input class="final-answer" id="word_final-answer"/></span>
         <span class="check_button" id="cb_final-answer">CHECK</span>
     </div>
-    <div class="finall-answer-shown" id="final-answer-shown" style="display: none">
+    <div class="final-answer-shown" id="final-answer-shown" style="display: none">
         <span>{{ game['answer'] }}</span>
     </div>
+    <audio id="winAudio">
+        <source src="/static/audio/can_can_song.mp3">
+    </audio>
+    <img class="dancing-gif" id="dancing-gif" src="/static/site_images/dancing_ruffles.gif" style="display: none"/>
 {% endblock %}
 {% block scripts %}
     <script>
@@ -56,7 +60,12 @@
                 this.style.borderColor = 'darkgreen';
                 if (id_num === 'final-answer') {
                     $('#sw_final-answer').fadeOut();
-                    $('.finall-answer-shown').fadeIn();
+                    $('.final-answer-shown').fadeIn();
+                    if (answer === "WILL YOU MARRY ME?") {
+                        $('#winAudio').get(0).play();
+                        console.log('audio started now');
+                        setTimeout(showDancing, 11500)
+                    }
                 } else {
                     document.getElementById('keys_' + id_num).style.display = 'inline';
                 }
@@ -66,6 +75,10 @@
             }
 
 
-        })
+        });
+
+        function showDancing() {
+            $('#dancing-gif').show()
+        }
     </script>
 {% endblock %}
