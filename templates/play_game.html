@@ -1,5 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
+    <h5>Instructions</h5>
+    <p>Unscramble the following set of words to get the keys from each. Unscramble the keys to answer the final question.</p>
     <small><a href="/play_game/{{ game['id'] }}">shareable link</a></small>
     <div id="words">
         {% for i, word in game['scrambled_words'] %}
