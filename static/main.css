@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .jumbled_word_part {
-    width: 150px;
+    width: 275px;
     letter-spacing: 5px;
     display: inline-block;
     text-align: right;
